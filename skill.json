@@ -1,0 +1,65 @@
+{
+  "name": "genpark-agentic-commerce-multimodal-return-fraud-weight-sentinel-skill",
+  "version": "1.0.0",
+  "title": "Multimodal Return Fraud Box-Weight Disparity Sentinel Skill",
+  "description": "Carrier origin inbound scale scan vs product bill-of-materials weight disparity detector (brick-in-box / missing item fraud) and dispute pack compiler. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "return-fraud",
+    "carrier-scale-scan",
+    "weight-disparity",
+    "e-commerce-fraud",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "detect_return_box_weight_disparity",
+      "description": "Detect return package weight tampering by cross-referencing carrier scale scan against factory catalog weight.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "expected_bom_weight_grams": {
+            "type": "number"
+          },
+          "carrier_scanned_weight_grams": {
+            "type": "number"
+          },
+          "packaging_tolerance_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "expected_bom_weight_grams",
+          "carrier_scanned_weight_grams"
+        ]
+      }
+    },
+    {
+      "name": "compile_return_fraud_arbitration_dossier",
+      "description": "Assemble timestamped carrier manifest proof and packaging audit for marketplace chargeback defense.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rma_id": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "weight_disparity_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rma_id",
+          "customer_id",
+          "weight_disparity_pct"
+        ]
+      }
+    }
+  ]
+}
